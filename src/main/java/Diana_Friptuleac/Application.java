@@ -49,8 +49,10 @@ public class Application {
             Evento eventById = eventDB.getById(6);
             System.out.println("Evendo id: " + eventById);
 
+
             eventDB.delete(6);
-            eventDB.delete(1);
+            //  eventDB.delete(1);
+            eventDB.delete(3);
 
 
         } catch (NotFoundException e) {
@@ -65,5 +67,7 @@ public class Application {
         }*/
 
 
+        em.close();
+        emf.close();
     }
 }
