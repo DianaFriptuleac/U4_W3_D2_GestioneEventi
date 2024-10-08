@@ -1,4 +1,4 @@
-package eventi;
+package Diana_Friptuleac.eventi;
 
 import jakarta.persistence.*;
 

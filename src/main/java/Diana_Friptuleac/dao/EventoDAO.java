@@ -1,7 +1,7 @@
 package Diana_Friptuleac.dao;
 
-import eventi.Evento;
-import exceptions.NotFoundException;
+import Diana_Friptuleac.eventi.Evento;
+import Diana_Friptuleac.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
@@ -28,5 +28,15 @@ public class EventoDAO {
         Evento foundEvento = entityManager.find(Evento.class, eventoId);
         if (foundEvento == null) throw new NotFoundException(eventoId);
         return foundEvento;
+    }
+
+    //Metodo delete
+    public void delete(long eventoId) {
+        Evento foundEvent = this.getById(eventoId);
+        EntityTransaction transaction = entityManager.getTransaction();  //nuova transazione creata da Entity Manager
+        transaction.begin();
+        entityManager.remove(foundEvent);
+        transaction.commit();
+        System.out.println("L'evento " + foundEvent.getTitolo() + " è stato rimosso con successo!");
     }
 }

@@ -1,9 +1,9 @@
 package Diana_Friptuleac;
 
 import Diana_Friptuleac.dao.EventoDAO;
-import eventi.Evento;
-import eventi.EventoType;
-import exceptions.NotFoundException;
+import Diana_Friptuleac.eventi.Evento;
+import Diana_Friptuleac.eventi.EventoType;
+import Diana_Friptuleac.exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -48,9 +48,22 @@ public class Application {
         try {
             Evento eventById = eventDB.getById(6);
             System.out.println("Evendo id: " + eventById);
+
+            eventDB.delete(6);
+            eventDB.delete(1);
+
+
         } catch (NotFoundException e) {
             System.out.println(e.getMessage());
         }
+
+        //-------------------------------Delete-------------------------------------------------------
+       /* try {
+            eventDB.delete(6);
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
+        }*/
+
 
     }
 }
