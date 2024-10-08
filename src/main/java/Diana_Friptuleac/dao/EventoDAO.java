@@ -1,6 +1,7 @@
-package dao;
+package Diana_Friptuleac.dao;
 
 import eventi.Evento;
+import exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 
@@ -20,5 +21,12 @@ public class EventoDAO {
         transaction.commit();  //chiudo transizione e mando l'elevto al DB
         System.out.println("L'evento " + newEvento.getTitolo() + " è stato aggiunto con successo!");
 
+    }
+
+    //Metodo getById
+    public Evento getById(long eventoId) {
+        Evento foundEvento = entityManager.find(Evento.class, eventoId);
+        if (foundEvento == null) throw new NotFoundException(eventoId);
+        return foundEvento;
     }
 }

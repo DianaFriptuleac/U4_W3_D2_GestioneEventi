@@ -1,8 +1,9 @@
 package Diana_Friptuleac;
 
-import dao.EventoDAO;
+import Diana_Friptuleac.dao.EventoDAO;
 import eventi.Evento;
 import eventi.EventoType;
+import exceptions.NotFoundException;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -17,6 +18,7 @@ public class Application {
         EntityManager em = emf.createEntityManager(); //creo un unico EntityManager per tutto l'app.
         EventoDAO eventDB = new EventoDAO(em);
 
+        //-------------------------------Save-------------------------------------------------------
         Evento evento1 = new Evento("Panda", LocalDate.of(2024, 12, 10),
                 "Salviamo i Panda!", EventoType.PUBBLICO, 200);
 
@@ -41,6 +43,14 @@ public class Application {
         eventDB.save(evento4);
         eventDB.save(evento5);
         eventDB.save(evento6);
+
+        //-------------------------------GetById-------------------------------------------------------
+        try {
+            Evento eventById = eventDB.getById(6);
+            System.out.println("Evendo id: " + eventById);
+        } catch (NotFoundException e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }
